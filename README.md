@@ -33,3 +33,4 @@ QRcode(app)
 
 ###For Python3
 This fork for python3
+update flask_qrcode/__init__.py to source code。

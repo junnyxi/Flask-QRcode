@@ -30,3 +30,6 @@ QRcode(app)
     
 ###More examples:
 [Examples folder](https://github.com/marcoagner/Flask-QRcode/tree/master/sample_application)
+
+###For Python3
+This fork for python3

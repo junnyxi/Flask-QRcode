@@ -1,4 +1,7 @@
-import StringIO
+"""
+Support PY3，Use BytesIO instead of StringIO
+"""
+from io import BytesIO
 import base64
 
 from flask import render_template, Blueprint, Markup, url_for
@@ -10,6 +13,7 @@ correction_levels = {
     'Q': qrc.constants.ERROR_CORRECT_Q,
     'H': qrc.constants.ERROR_CORRECT_H
 }
+
 
 def qrcode(data, version=None, error_correction='L', box_size=10, border=0, fit=True):
     # makes qr image using qrcode as qrc
@@ -23,11 +27,12 @@ def qrcode(data, version=None, error_correction='L', box_size=10, border=0, fit=
     qr.make(fit=fit)
 
     # creates qrcode base64
-    io = StringIO.StringIO()
+    # io = StringIO()
+    sio = BytesIO()
     qr_img = qr.make_image()
-    qr_img.save(io)
+    qr_img.save(sio)
+    return "data:image/png;base64," + base64.b64encode(sio.getvalue()).decode()
 
-    return "data:image/png;base64," + base64.b64encode(io.getvalue())
 
 class QRcode(object):
 
